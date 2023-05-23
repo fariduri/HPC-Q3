@@ -11,7 +11,13 @@ void tambahVector(
 	const int cJumlahElemen)
 {
 	// cari indeks saya
-	int idx_ = 0;
+	int idx_ = blockIdx.x * blockDim.x + threadIdx.x;
+
+	if idx(tid < cJumlahElemen)
+	{
+		cVectorC[idx_] = cVectorA[idx_] + cVectorB[idx_]
+	}
+
 }
 
 // fungsi main untuk panggil kernel
@@ -85,10 +91,12 @@ int main(void)
 
 	std::cout << "Test PASSED\n";
 
+	// Free GPU memory
   	cudaFree(d_A_);
   	cudaFree(d_B_);
 	cudaFree(d_C_);
 
+	// Free CPU memory
   	free(h_A_);
   	free(h_B_);
   	free(h_C_);
